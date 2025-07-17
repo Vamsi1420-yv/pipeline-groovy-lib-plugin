@@ -1,18 +1,13 @@
-FROM jenkinsciinfra/plugin-site-api:latest
-
-USER root
-
-# Install Git and other tools (already includes Java + Maven)
-RUN apt-get update && apt-get install -y git curl
+FROM maven:3.9.6-eclipse-temurin-21 as build
 
 # Set workdir
 WORKDIR /app
 
-# Copy Jenkins settings.xml (if needed)
+# Copy Maven settings file (adjust path if needed)
 COPY settings.xml /root/.m2/settings.xml
 
-# Copy plugin code
+# Copy project files
 COPY . .
 
-# Build with Jenkins plugin goals
+# Build the project (skip tests)
 RUN mvn -B -ntp clean verify -DskipTests
