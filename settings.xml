@@ -4,10 +4,16 @@
       <id>jenkins</id>
       <repositories>
         <repository>
-          <id>jenkins</id>
+          <id>jenkins-public</id>
           <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
       </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>jenkins-public</id>
+          <url>https://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+      </pluginRepositories>
     </profile>
   </profiles>
   <activeProfiles>
