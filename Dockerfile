@@ -1,16 +1,16 @@
 FROM maven:3.9.6-eclipse-temurin-11
 
-# Install any additional tools (if needed)
+# Install necessary tools
 RUN apt-get update && apt-get install -y git curl
 
-# Set workdir
+# Set working directory
 WORKDIR /app
 
-# Copy your project files
-COPY . .
-
-# Copy settings.xml to Maven config
+# Copy settings.xml to the correct Maven location
 COPY settings.xml /root/.m2/settings.xml
 
-# Run build
+# Copy project files
+COPY . .
+
+# Run Maven build with the Jenkins repo from settings.xml
 RUN mvn -B -ntp verify -DskipTests=true
